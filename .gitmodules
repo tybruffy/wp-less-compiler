@@ -1,0 +1,3 @@
+[submodule "lib/ajax-file-browser"]
+	path = lib/ajax-file-browser
+	url = git@github.com:TyBruffy/ajax-file-browser.git
