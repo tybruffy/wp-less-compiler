@@ -1,0 +1,48 @@
+.tb-fb-overlay {
+	width: 100%;
+	height: 100%;
+
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 999998;
+
+	background: #333;
+	background: rgba( 0, 0, 0, .35);
+}
+
+.tb-file-browser {
+	width: 50%;
+	height: 50%;
+	overflow: scroll;
+
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	z-index: 999999;
+	margin: -25% 0 0 -25%;
+
+	background: #e5e5e5;
+}
+
+.tb-file-browser .directory-list {
+	margin: 25px;
+}
+
+.tb-file-browser a {
+	padding-left: 20px;
+	text-decoration: none;
+	line-height: 16px;
+}
+
+.tb-file-browser li {
+	background-repeat: no-repeat;
+}
+
+.tb-file-browser li.directory {
+	background-image: url( directory.png );
+}
+
+.tb-file-browser li.file {
+	background-image: url( file.png );
+}
