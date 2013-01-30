@@ -32,9 +32,9 @@ class SettingsHtml extends PluginObject {
 	public function output_page_styles() {
 		wp_enqueue_style( 'wlc_styles', self::$plugin_url . "/assets/css/base.css" );
 		wp_enqueue_script( 'plugin_js', self::$plugin_url . "/assets/js/plugin.js", array("jquery") );
-		wp_enqueue_script( 'fb_js', self::$plugin_url . "/lib/file-browser/browser.js", array("jquery") );
-		wp_enqueue_style( 'fb_css', self::$plugin_url . "/lib/file-browser/file-browser.css" );
-		echo sprintf('<script type="text/javascript">var fb_url = "%s/lib/file-browser/browser.class.php";</script>', self::$plugin_url );
+		wp_enqueue_script( 'fb_js', self::$plugin_url . "/lib/ajax-file-browser/browser.js", array("jquery") );
+		wp_enqueue_style( 'fb_css', self::$plugin_url . "/lib/ajax-file-browser/file-browser.css" );
+		echo sprintf('<script type="text/javascript">var fb_url = "%s/lib/ajax-file-browser/browser.class.php";</script>', self::$plugin_url );
 	}
 
 	public function display() {
