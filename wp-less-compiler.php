@@ -16,7 +16,7 @@ class PluginObject {
 	const DB_VERSION    = "1.0";
 	const PREFIX        = "wlc_";
 	const LESS_JS_VER   = "1.3.3.min";
-	const LESS_PHP_VER  = "0.3.8";
+	const LESS_PHP_VER  = "0.3.9";
 
 	public static $plugin_url;
 	public static $plugin_path;
