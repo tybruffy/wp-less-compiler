@@ -18,6 +18,8 @@ class Asset extends PluginObject {
 	
 
 	function __construct( $url, $path, $hash = null ) {
+		self::plugin_info();
+
 		$this->url  = $url;
 		$this->input_path = $path;
 		$this->_set_path();
@@ -54,7 +56,7 @@ class Asset extends PluginObject {
 	}
 
 	private function _get_template_dir() {
-		return $this->_fix_slashes( get_template_directory() );
+		return $this->_fix_slashes( self::$template_path );
 	}
 
 	private function _fix_slashes( $string ) {
