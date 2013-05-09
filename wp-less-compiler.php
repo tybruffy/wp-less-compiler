@@ -24,8 +24,8 @@ class PluginObject {
 	public static $template_path;
 
 	function plugin_info() {
-		self::$template_path = get_template_directory();
-		self::$template_url  = get_template_directory_uri();
+		self::$template_path = get_stylesheet_directory();
+		self::$template_url  = get_stylesheet_directory_uri();
 		self::$plugin_path   = plugin_dir_path(__FILE__);
 		self::$plugin_url    = plugins_url('', __FILE__);
 	}
