@@ -26,7 +26,7 @@ jQuery(document).ready(function($) {
 
 		$script = $("<script></script>")
 			.attr("type", "text/javascript")
-			.attr("src", plugin_url+"/assets/js/less-1.3.3.min.js")
+			.attr("src", plugin_url+"/assets/js/less-"+less_ver+".js")
 
 		$wrap.append($link)
 		$wrap.appendTo("body")

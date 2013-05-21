@@ -34,7 +34,7 @@ class SettingsHtml extends PluginObject {
 		wp_enqueue_script( 'plugin_js', self::$plugin_url . "/assets/js/plugin.js", array("jquery") );
 		wp_enqueue_script( 'fb_js', self::$plugin_url . "/lib/ajax-file-browser/browser.js", array("jquery") );
 		wp_enqueue_style( 'fb_css', self::$plugin_url . "/lib/ajax-file-browser/file-browser.css" );
-		echo sprintf('<script type="text/javascript">var plugin_url = "%s";</script>', self::$plugin_url );
+		echo sprintf('<script type="text/javascript">var plugin_url = "%s"; less_ver = "%s"</script>', self::$plugin_url, self::LESS_JS_VER );
 	}
 
 	public function display() {
