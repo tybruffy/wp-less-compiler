@@ -14,29 +14,36 @@ jQuery(document).ready(function($) {
 	});	
 
 	$(".compiler-form").submit(function() {
+		var $wrap = $('<div class="test"></div>')
+			,	$less = $("#less_url")
+			,	$file = $("#less_file")
+			,	$css  = $("#css_file")
 
+		$link = $("<link>")
+			.attr("rel", "stylesheet/less")
+			.attr("type", "text/css")
+			.attr("href", $less.val())
+
+		$script = $("<script></script>")
+			.attr("type", "text/javascript")
+			.attr("src", plugin_url+"/assets/js/less-1.3.3.min.js")
+
+		$wrap.append($link)
+		$wrap.appendTo("body")
+		$wrap.append($script)
+
+		$style = $('style[id*="less"]')
+		css = $style.html()
+		$style.remove();
+
+		$input = $("<input>")
+			.attr("type", "hidden")
+			.attr("name", "css_text")
+			.val( css );
+
+		$(this).append($input);
+
+		return true;
 	});
 
-	var $wrap = $('<div class="test"></div>')
-		,	$less = $("#less_url")
-		,	$file = $("#less_file")
-		,	$css  = $("#css_file")
-
-	$link = $("<link>")
-		.attr("rel", "stylesheet/less")
-		.attr("type", "text/css")
-		.attr("href", $less.val())
-
-	$script = $("<script></script>")
-		.attr("type", "text/javascript")
-		.attr("src", plugin_url+"/assets/js/less-1.3.3.min.js")
-
-	$wrap.append($link)
-	$wrap.appendTo("body")
-	$wrap.append($script)
-
-	$style = $('style[id*="less"]')
-	css = $style.html()
-
-	$style.remove();
 });
