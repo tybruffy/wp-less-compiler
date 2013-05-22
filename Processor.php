@@ -25,9 +25,8 @@ class Processor extends PluginObject {
 
 	private function _init_compile() {
 		require_once( "Compiler.php" );
-		require_once( "lib" . DS . "lessphp.".self::LESS_PHP_VER . DS . "lessc.inc.php" );
 
-		$this->compiler = new Compiler( $this->style );
+		$this->compiler = new Compiler( $this->style, $this->request_array["css_text"] );
 		try {
 			$this->compiler->compile();
 		} catch (Exception $e) {
