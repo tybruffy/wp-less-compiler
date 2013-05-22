@@ -34,7 +34,7 @@ class SettingsHtml extends PluginObject {
 		wp_enqueue_script( 'plugin_js', self::$plugin_url . "/assets/js/plugin.js", array("jquery") );
 		wp_enqueue_script( 'fb_js', self::$plugin_url . "/lib/ajax-file-browser/browser.js", array("jquery") );
 		wp_enqueue_style( 'fb_css', self::$plugin_url . "/lib/ajax-file-browser/file-browser.css" );
-		echo sprintf('<script type="text/javascript">var fb_url = "%s/lib/ajax-file-browser/browser.class.php";</script>', self::$plugin_url );
+		echo sprintf('<script type="text/javascript">var plugin_url = "%s"; less_ver = "%s"</script>', self::$plugin_url, self::LESS_JS_VER );
 	}
 
 	public function display() {
@@ -46,7 +46,7 @@ class SettingsHtml extends PluginObject {
 
 		<div class="wrap" id="tjg-admin-theme">
 
-			<form method="post" enctype="multipart/form-data" class="padded-form bordered-form">
+			<form method="post" enctype="multipart/form-data" class="padded-form bordered-form options-form">
 				<h1>Options</h1>
 				<input type="hidden" name="request" value="save">
 			
@@ -96,7 +96,7 @@ class SettingsHtml extends PluginObject {
 				</div>
 			</form>
 
-			<form method="post" enctype="multipart/form-data" class="padded-form bordered-form tjg-form">
+			<form method="post" enctype="multipart/form-data" class="padded-form bordered-form compiler-form">
 				<h1>Compile Less</h1>
 							
 				<?php echo $this->compile_msg; ?>

@@ -12,15 +12,15 @@
 class Compiler extends PluginObject {
 
 	private $compiled;
-	private $style_object;
+	private $style;
+	private $css_text;
 	private $less;
 	private $css;
 	private $css_comment;
 
-	function __construct( $style ) {
-
-		$this->compiler     = $this->_set_compiler();
+	function __construct( $style, $css_text ) {
 		$this->style        = $style;
+		$this->css_text     = stripslashes($css_text);
 		$this->less         = $this->style->less;
 		$this->css          = $this->style->css;
 		$this->css_comment  = "/*\r\nCSS compiled from the file: ".$this->less->url. "\r\n*/\r\n"; 
@@ -35,7 +35,7 @@ class Compiler extends PluginObject {
 
 
 	public function compile() {
-		$css_string = $this->_create_css( $this->less->path );
+		$css_string = $this->_minify_css( $this->css_text );
 		$css_string = $this->_add_css_comment( $this->css_comment, $css_string );
 		return $this->_write_to_file( $css_string, $this->css->path );
 	}
@@ -43,15 +43,9 @@ class Compiler extends PluginObject {
 
 
 
-	private function _set_compiler() {
-		$compiler = new lessc;
-		$compiler->setFormatter( "compressed" );
-		return $compiler;
-	}
-
-
-	private function _create_css( $less_path ) {
-		return $this->compiler->compileFile( $less_path );
+	private function _minify_css( $css_string ) {
+		require_once( "lib/cssmin/cssmin-v3.0.1.php" );
+		return CssMin::minify($css_string);
 	}
 
 
