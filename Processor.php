@@ -37,8 +37,13 @@ class Processor extends PluginObject {
 		if ( $this->compiler->is_compiled() ) {
 			$this->message["text"] = "CSS compiled successfully.";
 			$this->message["type"] = "updated";
+			$this->_save_css_version();
 			$this->_save_new_style_hash();
 		}
+	}
+
+	private function _save_css_version() {
+		self::_set_wp_option("css-version", time());
 	}
 
 	private function _save_new_style_hash() {
