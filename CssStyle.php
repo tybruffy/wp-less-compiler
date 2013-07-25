@@ -9,7 +9,8 @@ class CssStyle extends PluginObject {
 	}
 
 	public function output() {
-		wp_enqueue_style( "compiled-less", $this->css->url, false, null, "all" );
+		$version = self::_get_wp_option( "css-version" );
+		wp_enqueue_style( "compiled-less", $this->css->url, false, $version, "all" );
 	}
 
 
