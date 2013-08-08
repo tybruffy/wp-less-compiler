@@ -31,6 +31,7 @@ class SettingsHtml extends PluginObject {
 
 	public function output_page_styles() {
 		wp_enqueue_style( 'wlc_styles', self::$plugin_url . "/assets/css/base.css" );
+		wp_enqueue_script( 'destroy-less', self::$plugin_url . "/assets/js/destroy-less.js", array("jquery") );
 		wp_enqueue_script( 'plugin_js', self::$plugin_url . "/assets/js/plugin.js", array("jquery") );
 		wp_enqueue_script( 'fb_js', self::$plugin_url . "/lib/ajax-file-browser/browser.js", array("jquery") );
 		wp_enqueue_style( 'fb_css', self::$plugin_url . "/lib/ajax-file-browser/file-browser.css" );
