@@ -19,6 +19,8 @@ jQuery(document).ready(function($) {
 			,	$file = $("#less_file")
 			,	$css  = $("#css_file")
 
+		destroyLessCache($less.val());
+
 		$link = $("<link>")
 			.attr("rel", "stylesheet/less")
 			.attr("type", "text/css")
