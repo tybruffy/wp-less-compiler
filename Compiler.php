@@ -44,8 +44,9 @@ class Compiler extends PluginObject {
 
 
 	private function _minify_css( $css_string ) {
-		require_once( "lib/cssmin/cssmin-v3.0.1.php" );
-		return CssMin::minify($css_string);
+		require_once( "lib/YUI-CSS-compressor-PHP-port/cssmin.php" );
+		$compressor = new CSSmin();
+		return $compressor->run($css_string);
 	}
 
 
