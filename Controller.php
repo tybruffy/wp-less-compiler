@@ -21,8 +21,7 @@ Class Controller extends PluginObject {
 
 	public function frontend_init() {
 		global $current_user;
-		$user_type = ( current_user_can("manage_options") ) ? "admin" : "public";
-		$view_type = self::_get_wp_option( $user_type."-view" );
+		$view_type = $this->_get_view_type();
 		$this->_initalize_plugin( $view_type );
 	}
 
@@ -49,7 +48,14 @@ Class Controller extends PluginObject {
 	}
 
 
-
+	private function _get_view_type() {
+		$user_type = ( current_user_can("manage_options") ) ? "admin" : "public";
+		if (isset($_ENV["less-compiler"][$user_type])) {
+			return $_ENV["less-compiler"][$user_type];
+		} else {
+			return self::_get_wp_option( $user_type."-view" );
+		}
+	}
 
 	private function _initalize_plugin( $view_type ) {
 		$this->_set_style( $view_type );
