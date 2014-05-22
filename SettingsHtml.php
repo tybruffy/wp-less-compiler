@@ -10,6 +10,7 @@ class SettingsHtml extends PluginObject {
 	private $request_type;
 	
 	private $modifed_msg = "<strong>Warning:</strong> CSS file has been modified since it was last compiled.";
+	private $override_msg = "";
 	private $compile_msg = "";
 	private $save_msg    = "";
 
@@ -46,7 +47,7 @@ class SettingsHtml extends PluginObject {
 		</h2>
 
 		<div class="wrap" id="tjg-admin-theme">
-
+			
 			<form method="post" enctype="multipart/form-data" class="padded-form bordered-form options-form">
 				<h1>Options</h1>
 				<input type="hidden" name="request" value="save">
@@ -74,18 +75,23 @@ class SettingsHtml extends PluginObject {
 				</div>
 
 				<div class="form-row">
-					<label for="view-css" class="checkbox-label centered-label stacked">
-						<input type="radio" name="view" value="css" id="view-css" <?php echo $this->_input_check($this->view_type, "css", "checked");?>>
-						Disable Less
-					</label>
-					<label for="view-less" class="checkbox-label centered-label stacked">
-						<input type="radio" name="view" value="less" id="view-less" <?php echo $this->_input_check($this->view_type, "less", "checked");?>>
-						Enable Less
-					</label>
-					<label for="view-variable" class="checkbox-label centered-label stacked">
-						<input type="radio" name="view" value="variable" id="view-variable" <?php echo $this->_input_check($this->view_type, "variable", "checked");?>>
-						Enable Less for Administrators
-					</label>
+					<div class="form4">
+						<label for="view-css" class="checkbox-label centered-label stacked">
+							<input type="radio" name="view" value="css" id="view-css" <?php echo $this->_input_check($this->view_type, "css", "checked");?>>
+							Disable Less
+						</label>
+						<label for="view-less" class="checkbox-label centered-label stacked">
+							<input type="radio" name="view" value="less" id="view-less" <?php echo $this->_input_check($this->view_type, "less", "checked");?>>
+							Enable Less
+						</label>
+						<label for="view-variable" class="checkbox-label centered-label stacked">
+							<input type="radio" name="view" value="variable" id="view-variable" <?php echo $this->_input_check($this->view_type, "variable", "checked");?>>
+							Enable Less for Administrators
+						</label>
+					</div>
+					<div class="form8 update-nag">
+						<?php echo $this->override_msg; ?>
+					</div>
 				</div>
 
 				<?php echo $this->save_msg; ?>
@@ -117,10 +123,21 @@ class SettingsHtml extends PluginObject {
 	private	function _set_messages( $message ) {
 		if ( $this->css->file_has_changed() ) {
 			$this->compile_msg = $this->_get_msg_html( "error", $this->modifed_msg );
-		} else {
-			if ( !empty($message) ) {
-				$this->{$message["placement"].'_msg'} = $this->_get_msg_html( $message["type"], $message["text"]);
-			}
+		}
+
+		if ( !empty($message) ) {
+			$this->{$message["placement"].'_msg'} = $this->_get_msg_html( $message["type"], $message["text"]);
+		}
+
+		if ( isset( $_ENV["less-compiler"]["public"] ) || isset( $_ENV["less-compiler"]["admin"] ) ) {
+			$this->override_msg = $this->_get_msg_html( "", sprintf(
+				'<strong>Environment variable override enabled. Changes will not take effect.</strong><br /><br />
+				<strong>Public:</strong> %s<br />
+				<strong>Admin:</strong> %s
+				 ',
+				$_ENV["less-compiler"]["public"] ? strtoupper($_ENV["less-compiler"]["public"]) : "Not Set",
+				$_ENV["less-compiler"]["admin"] ? strtoupper($_ENV["less-compiler"]["admin"]) : "Not Set"
+			));
 		}
 	}
 
