@@ -15,7 +15,7 @@ require_once( "Controller.php" );
 class PluginObject {
 	const DB_VERSION    = "1.0";
 	const PREFIX        = "wlc_";
-	const LESS_JS_VER   = "1.3.3.min";
+	const LESS_JS_VER   = "1.7.0.min";
 	const LESS_PHP_VER  = "0.3.9";
 
 	public static $plugin_url;
