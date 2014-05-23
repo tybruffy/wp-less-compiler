@@ -1,4 +1,4 @@
-#Wordpress Less Compiler 1.2
+#Wordpress Less Compiler 1.2.1
 
 ##About
 
