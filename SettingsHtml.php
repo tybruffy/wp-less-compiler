@@ -89,9 +89,7 @@ class SettingsHtml extends PluginObject {
 							Enable Less for Administrators
 						</label>
 					</div>
-					<div class="form8 update-nag">
-						<?php echo $this->override_msg; ?>
-					</div>
+					<?php echo $this->override_msg; ?>
 				</div>
 
 				<?php echo $this->save_msg; ?>
@@ -131,10 +129,12 @@ class SettingsHtml extends PluginObject {
 
 		if ( isset( $_ENV["less-compiler"]["public"] ) || isset( $_ENV["less-compiler"]["admin"] ) ) {
 			$this->override_msg = $this->_get_msg_html( "", sprintf(
-				'<strong>Environment variable override enabled. Changes will not take effect.</strong><br /><br />
-				<strong>Public:</strong> %s<br />
-				<strong>Admin:</strong> %s
-				 ',
+				'<div class="form8 update-nag">
+					<strong>Environment variable override enabled. Changes will not take effect.</strong><br /><br />
+					<strong>Public:</strong> %s<br />
+					<strong>Admin:</strong> %s
+				</div>
+				',
 				$_ENV["less-compiler"]["public"] ? strtoupper($_ENV["less-compiler"]["public"]) : "Not Set",
 				$_ENV["less-compiler"]["admin"] ? strtoupper($_ENV["less-compiler"]["admin"]) : "Not Set"
 			));
