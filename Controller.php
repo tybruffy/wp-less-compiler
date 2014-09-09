@@ -22,7 +22,10 @@ Class Controller extends PluginObject {
 	public function frontend_init() {
 		global $current_user;
 		$view_type = $this->_get_view_type();
-		$this->_initalize_plugin( $view_type );
+		
+		if ($view_type && self::_get_wp_option("asset")) {
+			$this->_initalize_plugin( $view_type );
+		}
 	}
 
 	public function backend_init() {
