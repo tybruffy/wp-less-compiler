@@ -3,7 +3,7 @@
 	Plugin Name: WP Less Compiler
 	Plugin URI: http://www.thejakegroup.com
 	Description: Compiles LESS into CSS.  Allows the administrator to output LESS to Admin users, and CSS to everyone else.
-	Version: 1.2.2
+	Version: 1.3.0
 	Author: Tyler Bruffy
 */
 
