@@ -105,11 +105,22 @@ class SettingsHtml extends PluginObject {
 				<h1>Compile Less</h1>
 							
 				<?php echo $this->compile_msg; ?>
-
+				<div class="form-row">
+					<div class="form4">
+						<label for="compress" class="checkbox-label centered-label stacked">
+							<input type="checkbox" name="compress" value="1" id="compress">
+							Compress CSS
+						</label>
+					</div>
+					<?php echo $this->override_msg; ?>
+				</div>
 				<div class="form-row">
 					<input type="hidden" name="request" value="compile">
 					<input type="submit" value="Compile Less File" />
 				</div>
+				<div class="form-row">
+					<small><em><strong>Please Note:</strong> This plugin uses the less.js browser version to convert the less to css before submitting this form.  After clicking Compile, the form may hang for a few seconds while this conversion takes place.</em></small>
+				</div>				
 			</form>
 		</div>
 		<?php

@@ -18,12 +18,13 @@ class Compiler extends PluginObject {
 	private $css;
 	private $css_comment;
 
-	function __construct( $style, $css_text ) {
+	function __construct( $style, $css_text, $compress ) {
 		$this->style        = $style;
 		$this->css_text     = stripslashes($css_text);
 		$this->less         = $this->style->less;
 		$this->css          = $this->style->css;
-		$this->css_comment  = "/*\r\nCSS compiled from the file: ".$this->less->url. "\r\n*/\r\n"; 
+		$this->css_comment  = "/*\r\nCSS compiled from the file: ".$this->less->url. "\r\n*/\r\n";
+		$this->compress      = $compress;
 	}
 
 
@@ -35,9 +36,11 @@ class Compiler extends PluginObject {
 
 
 	public function compile() {
-		$css_string = $this->_minify_css( $this->css_text );
-		$css_string = $this->_add_css_comment( $this->css_comment, $css_string );
-		return $this->_write_to_file( $css_string, $this->css->path );
+		if ($this->compress) {
+			$this->css_text = $this->_minify_css( $this->css_text );
+		}
+		$this->css_text = $this->_add_css_comment( $this->css_comment, $this->css_text );
+		return $this->_write_to_file( $this->css_text, $this->css->path );
 	}
 
 
