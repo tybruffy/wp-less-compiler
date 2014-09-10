@@ -26,7 +26,9 @@ class Processor extends PluginObject {
 	private function _init_compile() {
 		require_once( "Compiler.php" );
 
-		$this->compiler = new Compiler( $this->style, $this->request_array["css_text"] );
+		$compress = isset($this->request_array["compress"]) ? $this->request_array["compress"] : false;
+
+		$this->compiler = new Compiler( $this->style, $this->request_array["css_text"], $compress);
 		try {
 			$this->compiler->compile();
 		} catch (Exception $e) {
